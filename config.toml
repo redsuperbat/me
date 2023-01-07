@@ -1,7 +1,7 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 paginate = 5
-
+theme = ["hello-friend"]
 
 [params]
 # "light" or "dark"
