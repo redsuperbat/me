@@ -7,7 +7,7 @@ theme = ["hello-friend"]
 # "light" or "dark"
 defaultTheme = "dark"
 # if you set this to 0, only submenu trigger will be visible
-showMenuItems = 2
+showMenuItems = 3
 # Enable to show reading time in minutes for posts
 showReadingTime = false
 [logo]
@@ -16,7 +16,7 @@ logoText = "Max Netterberg"
 [languages]
 [languages.en]
 title = 'Max Netterberg'
-subtitle = "A simple theme for Hugo"
+subtitle = "My corner of the internet"
 keywords = ""
 copyright = 'Max Netterberg 2022'
 menuMore = "Show more"
@@ -38,6 +38,10 @@ logoHomeLink = "/"
 # alt = "Your example logo alt text"
 
 [languages.en.menu]
+[[languages.en.menu.main]]
+identifier = "home"
+name = "Home"
+url = "/"
 [[languages.en.menu.main]]
 identifier = "about"
 name = "About"

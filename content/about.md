@@ -1,11 +1,14 @@
 ---
-title: "Welcome to my corner of the internet!"
+title: "Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer"
 draft: false
 ---
 
-// write about what I am and what I do and what I like.
-This webpage aims to be a living document of what is happening in my tech related life. Here you can find most of the stuff I'm up to regarding tech. Including projects, news and thoughts.
+## Hi
 
-[Here]({{< ref "/" >}}) are some posts about my previous endeavors. If any one of them tickles your fancy lets grab a ☕️ with me and tell me why.
+I'm {{< kbd Max >}}, this is my blog. I post stuff here about tech generally. This page acts as a forum for me to add posts of varying quality. If you you wonder how it's made check out my [github](https://github.com/redsuperbat/me) where I host the code for this site. 
 
-**🌴 Organically grown 🌴**
+Right now my interests include Distributed systems programming, Rust, Typescript, golang, Event driven architectures, Wine & Food 🍷.
+
+Generally you can find my on my [Github](https://github.com/redsuperbat/me), [LinkedIn](https://www.linkedin.com/in/max-netterberg/) or [Twitter](https://twitter.com/netterbergmax).
+
+{{< organic >}}
