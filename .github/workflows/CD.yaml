@@ -1,0 +1,53 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_push:
+    runs-on: ubuntu-latest
+    name: Build & Push
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: maxrsb/nordic_wellness_booker:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Write kubeconfig to ~/.kube/config
+        run: |
+          mkdir ~/.kube
+          echo '${{ secrets.KUBE_CONFIG }}' > ~/.kube/config
+
+      - name: Terraform init, validate, plan and apply
+        run: |
+          cd terraform
+          echo "** Running Terraform Init**"
+          terraform init
+
+          echo "** Running Terraform Validate**"
+          terraform validate
+
+          echo "** Running Terraform Plan**"
+          terraform plan -var="image_tag=${{ github.sha }}"
+
+          echo "** Running Terraform Apply**"
+          terraform apply -auto-approve -var="image_tag=${{ github.sha }}" -var="rsb_config_api_key=${{ secrets.RSB_CONFIG_API_KEY }}"

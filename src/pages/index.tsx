@@ -6,7 +6,6 @@ import { MarkdownReader } from "@/utilities/markdown-reader";
 import { glob } from "glob";
 import { InferGetStaticPropsType } from "next";
 import { Share_Tech_Mono } from "next/font/google";
-import Head from "next/head";
 import Image from "next/image";
 
 const font = Share_Tech_Mono({ weight: "400", subsets: ["latin"] });
@@ -16,9 +15,6 @@ export default function Home(
 ) {
   return (
     <>
-      <Head>
-        <title>Max Netterberg</title>
-      </Head>
       <main className={cls("p-10 sm:p-20", font.className)}>
         <div className="flex sm:flex-row flex-col items-center sm:items-start">
           <Image
@@ -78,7 +74,6 @@ export const getStaticProps = async () => {
   const posts = await glob(homeFilePath);
 
   const markdown = await new MarkdownReader().readMany(...posts);
-  console.log(markdown);
 
   return {
     props: {
