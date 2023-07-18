@@ -6,7 +6,10 @@ on:
 jobs:
   build_push:
     runs-on: ubuntu-latest
-    name: Build & Push
+    name: 🔧 Build & Push 
+    strategy:
+      matrix:
+        platform: ["linux/amd64", "linux/arm64"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,10 +28,15 @@ jobs:
           context: .
           push: true
           tags: maxrsb/nordic_wellness_booker:${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ matrix.platform }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
+  deploy_k8s:
+    runs-on: ubuntu-latest
+    name: 🐳 Deploy to K8s
+    needs: 
+      - build_push
+    steps:
       - name: Setup Terraform CLI
         uses: hashicorp/setup-terraform@v2
 
