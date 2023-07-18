@@ -18,7 +18,7 @@ provider "kubernetes" {
 locals {
   namespace = "me"
   name      = "me"
-  hosts = ["max.netterberg.io"]
+  hosts     = ["max.netterberg.io"]
 }
 
 variable "image_tag" {
@@ -36,6 +36,11 @@ resource "kubernetes_ingress_v1" "me_ingress" {
   metadata {
     name      = local.name
     namespace = local.namespace
+    annotations = {
+      "kubernetes.io/ingress.class"                      = "traefik"
+      "cert-manager.io/cluster-issuer"                   = "letsencrypt-prod"
+      "traefik.ingress.kubernetes.io/router.middlewares" = "default-redirect-https@kubernetescrd"
+    }
   }
 
   spec {
