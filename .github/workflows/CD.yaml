@@ -37,6 +37,9 @@ jobs:
     needs: 
       - build_push
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Setup Terraform CLI
         uses: hashicorp/setup-terraform@v2
 
