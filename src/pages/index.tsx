@@ -77,6 +77,9 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      title: "Max Netterberg | Home",
+      description:
+        "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer",
       markdown,
     },
   };

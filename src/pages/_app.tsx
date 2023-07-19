@@ -7,6 +7,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>{pageProps.title ?? "Max Netterberg"}</title>
+        <meta
+          name="description"
+          content={
+            pageProps.description ??
+            "Max Netterberg, Portfolio, Programmer, Software Engineer"
+          }
+          key="desc"
+        />
       </Head>
       <Component {...pageProps} />
     </>
