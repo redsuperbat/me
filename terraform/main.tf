@@ -61,6 +61,10 @@ resource "kubernetes_ingress_v1" "me_ingress" {
           }
         }
       }
+    }    
+    tls {
+      secret_name = local.name
+      hosts       = [local.hosts[0]]
     }
   }
 }
