@@ -41,7 +41,7 @@ export default function Home(
         font.className
       )}
     >
-      <div className="w-full max-w-7xl">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="flex sm:flex-row flex-col items-center sm:items-start gap-2 sm:h-64">
           <Image
             priority
