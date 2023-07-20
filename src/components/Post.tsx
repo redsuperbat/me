@@ -10,16 +10,19 @@ type Props = {
 
 export const Post = (props: Props) => {
   return (
-    <div className="border flex flex-col p-2 hover:bg-gray-100 transition-colors cursor-pointer">
+    <div className="border flex flex-col p-2 transition-colors cursor-pointer">
       <div className="flex flex-col">
         <div className="flex">
           {props.languages.map((it, index) => (
-            <>
+            <div key={it}>
               {index > 0 && "  ,"}
-              <span style={{ color: languageColors[it.toLowerCase()] }}>
+              <span
+                key={it}
+                style={{ color: languageColors[it.toLowerCase()] }}
+              >
                 {it}
               </span>
-            </>
+            </div>
           ))}
         </div>
         <span>{moment(props.date).format("yyyy-MM-DD")}</span>

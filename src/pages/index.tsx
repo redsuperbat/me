@@ -1,4 +1,5 @@
 import { Anchor } from "@/components/Anchor";
+import { GithubIcon, LinkedInIcon, TwitterIcon } from "@/components/Icons";
 import { Post } from "@/components/Post";
 import { cls } from "@/utilities/cls";
 import { MarkdownPath } from "@/utilities/markdown-path";
@@ -7,63 +8,102 @@ import { glob } from "glob";
 import { InferGetStaticPropsType } from "next";
 import { Share_Tech_Mono } from "next/font/google";
 import Image from "next/image";
+import { ReactNode } from "react";
 
 const font = Share_Tech_Mono({ weight: "400", subsets: ["latin"] });
+
+const IconLink = ({
+  url,
+  text,
+  icon,
+}: {
+  url: string;
+  text: string;
+  icon: ReactNode;
+}) => {
+  return (
+    <Anchor href={url}>
+      <span className="flex items-end gap-2">
+        {icon}
+        <span>{text}</span>
+      </span>
+    </Anchor>
+  );
+};
 
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   return (
     <>
-      <main className={cls("p-10 sm:p-20", font.className)}>
-        <div className="flex sm:flex-row flex-col items-center sm:items-start">
-          <Image
-            src="/images/max.jpeg"
-            height={250}
-            width={250}
-            alt="Max Netterberg"
-            className="hidden sm:block"
-          />
-          <div className="flex flex-col p-5 border sm:ml-2 sm:h-64 h-[340px] overflow-y-scroll">
-            <h1 className="sm:text-7xl text-2xl uppercase">Max Netterberg</h1>
-            <small>
-              Software Engineer, Tinkerer, Hobby gastronomer and Maniac
-              Programmer
-            </small>
-            <p>
-              Hi I'm Max, this is my blog. I post stuff here about tech
-              generally. This page acts as a forum for me to add posts of
-              varying quality. If you you wonder how it's made check out my{" "}
-              <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
-              where I host the code for this site. Right now my interests
-              include Distributed systems programming, Rust, Typescript, golang,
-              Event driven architectures, Wine & Food 🍷. Generally you can find
-              my on my{" "}
-              <Anchor href="https://github.com/redsuperbat">Github</Anchor>,{" "}
-              <Anchor href="https://www.linkedin.com/in/max-netterberg">
-                LinkedIn
-              </Anchor>{" "}
-              or{" "}
-              <Anchor href="https://twitter.com/netterbergmax">Twitter</Anchor>.
-            </p>
-          </div>
-        </div>
-        <section
-          className="grid gap-4 mt-5"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          }}
-        >
-          {props.markdown.map((it) => (
-            <Post
-              key={it.name}
-              date={new Date(it.frontmatter.date!)}
-              languages={it.frontmatter.languages}
-              title={it.firstHeader!}
-              body={it.frontmatter.description}
+      <main
+        className={cls(
+          "p-10 sm:p-20 dark:bg-slate-900 h-full min-h-screen dark:text-white",
+          font.className
+        )}
+      >
+        <div className="w-full max-w-7xl">
+          <div className="flex sm:flex-row flex-col items-center sm:items-start gap-2 sm:h-64 h-[340px]">
+            <Image
+              priority
+              src="/images/max.jpeg"
+              height={250}
+              width={250}
+              alt="Max Netterberg"
+              className="hidden sm:block w-64 h-64"
             />
-          ))}
-        </section>
+            <div className="flex flex-col p-5 border overflow-y-scroll h-full">
+              <h1 className="sm:text-6xl text-2xl uppercase">Max Netterberg</h1>
+              <small className="mb-2">
+                Software Engineer, Tinkerer, Hobby gastronomer and Maniac
+                Programmer
+              </small>
+              <p>
+                Hi, I'm Max. I post stuff here about tech. This page acts as a
+                forum for me to add posts of varying quality. If you you wonder
+                how it's made check out my{" "}
+                <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
+                where I host the code for this site. Right now my interests
+                include Distributed systems programming, Rust, Typescript,
+                golang, Event driven architectures, Wine & Food 🍷.
+              </p>
+            </div>
+            <div className="flex flex-col border w-full h-full p-5 gap-2">
+              <small>You can find me in these places 👇</small>
+              <IconLink
+                text="Github"
+                url="https://github.com/redsuperbat"
+                icon={<GithubIcon />}
+              />
+              <IconLink
+                text="Twitter"
+                url="https://twitter.com/netterbergmax"
+                icon={<TwitterIcon />}
+              />
+              <IconLink
+                text="LinkedIn"
+                url="https://www.linkedin.com/in/max-netterberg"
+                icon={<LinkedInIcon />}
+              />
+            </div>
+          </div>
+          <section
+            className="grid gap-4 mt-2"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            }}
+          >
+            {props.markdown.map((it) => (
+              <Post
+                key={it.content}
+                date={new Date(it.frontmatter.date!)}
+                languages={it.frontmatter.languages}
+                title={it.firstHeader!}
+                body={it.frontmatter.description}
+              />
+            ))}
+          </section>
+        </div>
       </main>
     </>
   );
@@ -79,7 +119,7 @@ export const getStaticProps = async () => {
     props: {
       title: "Max Netterberg | Home",
       description:
-        "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer",
+        "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer. Javascript, Typescript, Node.js, Golang, Rust",
       markdown,
     },
   };
