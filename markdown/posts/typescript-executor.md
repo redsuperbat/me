@@ -25,8 +25,7 @@ Simple code like this would make a really nice slide.
 </section>
 ```
 
-![](../decorators.png)
-
+![](decorators.png)
 It even though reveal have awesome support for showing code it did not have support for executing that code live during presentations. This is something that I really wanted since executing code during a presentation can significantly increase understanding of the code especially since the presentation was very `techy`.
 
 Reveal has a good plugin system so I started to look for a plugin which had the capability of executing code. I found [this](https://github.com/stanleynguyen/reveal-run-in-terminal) repo. It's a plugin to expose the terminal to run arbitrary console command such as `node` or `python` which then could run the code you had displayed. 
@@ -146,17 +145,77 @@ CMD [ "node", "index.js" ]
 ## Making the plugin
 
 The plugin needs to attach to all of the code elements in reveal.js and inject some JavaScript which will send a http request with the code content to the executor and then display the response.
+> reveal-code-exec.js
+```javascript
+window.RevealCodeExec = ({ execUrl }) => ({
+  id: "code-exec",
+  init: () => {
+    const codeblocks = document.querySelectorAll("pre.code-wrapper[runnable]");
+    for (const code of codeblocks) {
+      const runTheCode = "Run the code!";
+      const div = document.createElement("div");
+      code.contentEditable = "true";
+      code.style.position = "relative";
+      div.style.cursor = "pointer";
+      div.style.width = "100%";
+      div.style.zIndex = "10";
+      div.style.top = "100%";
+      div.style.bottom = "0";
+      div.style.background = "white";
+      div.style.position = "absolute";
+      div.innerText = runTheCode;
+      div.style.height = "fit-content";
+      div.onclick = async () => {
+        if (div.innerText !== runTheCode) {
+          return (div.innerText = runTheCode);
+        }
+        div.innerText = "Loading...";
+        const body = (
+          code.querySelector("code.visible.current-fragment") ||
+          code.querySelector("code")
+        ).textContent;
+        const res = await fetch(execUrl, {
+          method: "POST",
+          body,
+        });
+        if (!res.ok) {
+          div.innerText = runTheCode;
+          return;
+        }
+        const text = await res.text();
+        div.innerText = text || runTheCode;
+      };
+      code.appendChild(div);
+    }
+  },
+});
+```
 
-```
-Code for plugin
+We attach a function to the global window object and register it as a plugin in `index.html`
+
+```html {1,9}
+<script src="plugin/code-exec/plugin.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    plugins: [
+      RevealMarkdown,
+      RevealHighlight,
+      RevealNotes,
+      RevealCodeExec({ execUrl: "http://localhost:8080" }),
+    ],
+  });
+</script>
 ```
 
-Now we should be able to run the code in the presentation by pressing the `run me` button:
+Now we should be able to run the code in the presentation by pressing the `Run the code!` button
 
-```
-Screenshot of running it
-```
+![console-log.png](console-log.png)
+
+Pressing the button yields this result:
+
+![console-log-result.png](console-log-result.png)
 
 ## Conclusion 
 
-If you made it this far, congrats you now know how to execute arbitrary code on your machine. Don't use it for bad things. A link to the repo can be found here. Happy coding 😎
+If you made it this far, thanks for sticking along and hope your learned something new. Happy coding 😎
