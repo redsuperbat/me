@@ -39,7 +39,7 @@ So I concluded I needed two things. Firstly a server which could accept code and
 
 To make an API which could execute typescript code and return the results we can use any http framework. I opted to use [`fastify`](https://fastify.dev/) since it's supposed to be blazingly fast 🔥.
 
->`index.ts`
+>index.ts
 ```ts
 import cors from "@fastify/cors";
 import init from "fastify";
@@ -63,7 +63,7 @@ start();
 
 Since we want to be able to send Typescript code we have to transpile the code, this can be done with the `typescript` package:
 
-> `index.ts`
+> index.ts
 ```ts
 import { transpile, ModuleKind, ScriptTarget } from 'typescript';
 
@@ -77,7 +77,7 @@ const js = transpile(tsCode, {
 
 The executor should also be able to download arbitrary dependencies declared in the code. There is a great library which is made by Google called [`zx`](https://GitHub.com/google/zx) which can help us with that:
 
-> `index.ts
+> index.ts
 ```ts
 import { exec } from "child_process";
 import { randomUUID } from "crypto";
@@ -115,7 +115,7 @@ try {
 
 Great! Now we can package this app up with Docker and run it in a container for easy management.
 
-> `Dockerfile`
+> Dockerfile
 ```Dockerfile
 FROM node as builder
 

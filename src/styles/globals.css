@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Assume light mode by default */
+@import "./one-light-prism.css" screen;
+/* Supersede dark mode when applicable */  
+@import "./one-dark-prism.css" screen and (prefers-color-scheme: dark);
+
