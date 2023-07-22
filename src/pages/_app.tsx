@@ -1,7 +1,18 @@
-import type { AppProps } from "next/app";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
 
 import "@/styles/globals.css";
+
+export const reportWebVitals = (metric: NextWebVitalsMetric) => {
+  const body = JSON.stringify(metric);
+  const url = "/api/metrics";
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url, body);
+  } else {
+    fetch(url, { body, method: "POST", keepalive: true });
+  }
+};
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
