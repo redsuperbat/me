@@ -12,8 +12,8 @@ export default function PostsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
   return (
-    <main className="dark:bg-slate-900 p-5 sm:p-10 md:p-20 grid place-items-center w-screen">
-      <div className="max-w-3xl">
+    <main className="dark:bg-slate-900 p-5 sm:p-10 md:p-20 w-screen min-h-screen">
+      <div className="max-w-3xl mx-auto">
         <Markdown content={props.markdown.content} />
       </div>
     </main>
@@ -35,6 +35,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params?.id as string;
   const path = new MarkdownPath().joinWith("posts", id);
   const markdown = await new MarkdownReader().read(path);
+
   return {
     props: {
       title: `Posts - ${markdown.frontmatter.title ?? id}`,

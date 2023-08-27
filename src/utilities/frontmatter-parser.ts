@@ -8,7 +8,7 @@ export class FrontmatterParser {
     authors: z.string().array().optional(),
     title: z.string().optional(),
     description: z.string().optional(),
-    date: z.string().optional(),
+    date: z.string(),
     position: z.number().optional().default(100),
     languages: z.string().array().default([]),
     draft: z.boolean().default(false),
@@ -25,12 +25,11 @@ export class FrontmatterParser {
     frontmatter: Frontmatter;
   } {
     const frontmatterString = markdown.match(this.#frontmatterRegex)?.at(1);
-    const defaultReturn = {
-      content: markdown,
-      frontmatter: FrontmatterParser.schema.parse({}),
-    };
     if (!frontmatterString) {
-      return defaultReturn;
+      return {
+        content: markdown,
+        frontmatter: FrontmatterParser.schema.parse({}),
+      };
     }
     const errors: Error[] = [];
     for (const parser of this.#parsers) {

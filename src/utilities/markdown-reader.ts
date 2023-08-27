@@ -9,7 +9,7 @@ export type MarkdownFile = {
   base: string;
   path: string;
   chtime: string;
-  firstHeader?: string;
+  firstHeader: string | null;
 };
 
 interface ToString {
@@ -27,11 +27,12 @@ export class MarkdownReader {
     const rawContent = await fs.readFile(filepath, "utf-8");
     const fileStats = await fs.stat(filepath);
     const { content, frontmatter } = this.#frontmatterParser.parse(rawContent);
-    const firstHeader = rawContent
-      .split("\n")
-      .find((it) => it.startsWith("# "))
-      ?.slice(1)
-      .trim();
+    const firstHeader =
+      rawContent
+        .split("\n")
+        .find((it) => it.startsWith("# "))
+        ?.slice(1)
+        .trim() ?? null;
     return {
       content,
       frontmatter,

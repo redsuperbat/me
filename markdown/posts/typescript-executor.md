@@ -1,7 +1,7 @@
 ---
 title: "Making a typescript executor"
 description: Guide on how to create a presentation with reveal.js and adding live code execution
-languages: ["TS", "Dockerfile"]
+languages: ["Typescript", "Dockerfile"]
 date: 2023-03-22
 draft: true
 ---

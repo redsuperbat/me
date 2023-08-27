@@ -98,7 +98,7 @@ export default function Home(
               href={it.href}
               date={new Date(it.frontmatter.date!)}
               languages={it.frontmatter.languages}
-              title={it.firstHeader!}
+              title={it.firstHeader ?? it.frontmatter.title ?? ""}
               body={it.frontmatter.description}
             />
           ))}
@@ -117,7 +117,11 @@ export const getStaticProps = async () => {
 
   const posts = await glob(homeFilePath);
 
-  const markdown = await new MarkdownReader().readMany(...posts);
+  const markdown = (await new MarkdownReader().readMany(...posts)).sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+  );
 
   return {
     props: {
