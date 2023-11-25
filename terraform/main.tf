@@ -91,7 +91,7 @@ resource "kubernetes_deployment_v1" "me_deploy" {
   }
 
   spec {
-    replicas = 3
+    replicas = 1
     selector {
       match_labels = {
         app = local.name
