@@ -16,19 +16,13 @@ provider "kubernetes" {
 }
 
 locals {
-  namespace = "me"
-  name      = "me"
+  namespace = "rsb-apps"
+  name      = "rsb-me"
   hosts     = ["max.netterberg.io"]
 }
 
 variable "image_tag" {
   type = string
-}
-
-resource "kubernetes_namespace_v1" "me_ns" {
-  metadata {
-    name = local.namespace
-  }
 }
 
 resource "kubernetes_ingress_v1" "me_ingress" {
