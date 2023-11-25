@@ -18,7 +18,10 @@ provider "kubernetes" {
 locals {
   namespace = "rsb-apps"
   name      = "rsb-me"
-  hosts     = ["max.netterberg.io"]
+  hosts = [
+    "max.netterberg.com",
+    "max.netterberg.io",
+  ]
 }
 
 variable "image_tag" {
@@ -55,10 +58,10 @@ resource "kubernetes_ingress_v1" "me_ingress" {
           }
         }
       }
-    }    
+    }
     tls {
       secret_name = local.name
-      hosts       = [local.hosts[0]]
+      hosts       = local.hosts
     }
   }
 }

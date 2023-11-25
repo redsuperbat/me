@@ -25,9 +25,7 @@ jobs:
           context: .
           push: true
           tags: maxrsb/me:${{ github.sha }}
-          platforms: linux/amd64,linux/arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          platforms: linux/amd64
   
   deploy_k8s:
     runs-on: ubuntu-latest
@@ -49,11 +47,5 @@ jobs:
       - name: Terraform init, validate, plan and apply
         run: |
           cd terraform
-          echo "** Running Terraform Init**"
           terraform init
-
-          echo "** Running Terraform Validate**"
-          terraform validate
-
-          echo "** Running Terraform Apply**"
           terraform apply -auto-approve -var="image_tag=${{ github.sha }}"
