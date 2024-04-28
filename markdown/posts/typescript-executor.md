@@ -1,22 +1,23 @@
 ---
-title: "Making a typescript executor"
-description: Guide on how to create a presentation with reveal.js and adding live code execution
+title: Making a typescript executor
+description: Making interactive presentations are fun. I created one with reveal.js and adding live code execution with a typescript transpiler and executor
 languages: ["Typescript", "Dockerfile"]
 date: 2023-03-22
-draft: true
+updated: 2024-04-28
 ---
 
 # Typescript Executor
 
 How to execute typescript code during live coding presentations.
 
-A couple of months ago I held a presentation regarding Typescript decorators. I called it ["Demystifying Decorators"](https://redsuperbat.github.io/demystifying-decorators/) and it's about creating a dependency injection library in typescript using decorators. 
+A couple of months ago I held a presentation regarding Typescript decorators. I called it ["Demystifying Decorators"](https://redsuperbat.github.io/demystifying-decorators/) and it's about creating a dependency injection library in typescript using decorators.
 
-I wanted to be able to show code in an intuitive manner since the audience were mainly developers and I found this really awesome framework for creating presentations from `html` called [reveal](https://reveal.com). 
+I wanted to be able to show code in an intuitive manner since the audience were mainly developers and I found this really awesome framework for creating presentations from `html` called [reveal](https://reveal.com).
 
-Reveal had an awesome toolkit which helped me display code and transition between slides. 
+Reveal had an awesome toolkit which helped me display code and transition between slides.
 
 Simple code like this would make a really nice slide.
+
 ```html
 <section>
   <h2>Demystifying Decorators</h2>
@@ -28,17 +29,18 @@ Simple code like this would make a really nice slide.
 ![](decorators.png)
 It even though reveal have awesome support for showing code it did not have support for executing that code live during presentations. This is something that I really wanted since executing code during a presentation can significantly increase understanding of the code especially since the presentation was very `techy`.
 
-Reveal has a good plugin system so I started to look for a plugin which had the capability of executing code. I found [this](https://github.com/stanleynguyen/reveal-run-in-terminal) repo. It's a plugin to expose the terminal to run arbitrary console command such as `node` or `python` which then could run the code you had displayed. 
+Reveal has a good plugin system so I started to look for a plugin which had the capability of executing code. I found [this](https://github.com/stanleynguyen/reveal-run-in-terminal) repo. It's a plugin to expose the terminal to run arbitrary console command such as `node` or `python` which then could run the code you had displayed.
 
-However it has some issues, you have to run a command in the presentation pointing to a file which must contain the same code which is shown in the slide. Also if I wanted to run any code which depended on any external package I would have to install it on my machine first. I wanted to be able to press a button and run whatever code which was displayed on the screen and print the std out to the presentation screen. Regardless of dependencies or if I was presenting Typescript or JavaScript. 
+However it has some issues, you have to run a command in the presentation pointing to a file which must contain the same code which is shown in the slide. Also if I wanted to run any code which depended on any external package I would have to install it on my machine first. I wanted to be able to press a button and run whatever code which was displayed on the screen and print the std out to the presentation screen. Regardless of dependencies or if I was presenting Typescript or JavaScript.
 
-So I concluded I needed two things. Firstly a server which could accept code and ***transpile*** it if it was Typescript, fetch and install any external dependencies from `npm` and execute the code returning whatever logs which were printed to std out. Secondly I needed a reveal plugin which could send the text from code blocks to that server and display the text returned. 
+So I concluded I needed two things. Firstly a server which could accept code and **_transpile_** it if it was Typescript, fetch and install any external dependencies from `npm` and execute the code returning whatever logs which were printed to std out. Secondly I needed a reveal plugin which could send the text from code blocks to that server and display the text returned.
 
 ## Making the executor
 
 To make an API which could execute typescript code and return the results we can use any http framework. I opted to use [`fastify`](https://fastify.dev/) since it's supposed to be blazingly fast 🔥.
 
->index.ts
+> index.ts
+
 ```ts
 import cors from "@fastify/cors";
 import init from "fastify";
@@ -63,20 +65,22 @@ start();
 Since we want to be able to send Typescript code we have to transpile the code, this can be done with the `typescript` package:
 
 > index.ts
+
 ```ts
-import { transpile, ModuleKind, ScriptTarget } from 'typescript';
+import { transpile, ModuleKind, ScriptTarget } from "typescript";
 
 const js = transpile(tsCode, {
-    experimentalDecorators: true,
-    emitDecoratorMetadata: true,
-    module: ModuleKind.ES2015,
-    target: ScriptTarget.ES2015,
-  });
+  experimentalDecorators: true,
+  emitDecoratorMetadata: true,
+  module: ModuleKind.ES2015,
+  target: ScriptTarget.ES2015,
+});
 ```
 
 The executor should also be able to download arbitrary dependencies declared in the code. There is a great library which is made by Google called [`zx`](https://GitHub.com/google/zx) which can help us with that:
 
 > index.ts
+
 ```ts
 import { exec } from "child_process";
 import { randomUUID } from "crypto";
@@ -102,11 +106,11 @@ function cmd(command: string) {
 const filename = randomUUID();
 await writeFile(filename, js);
 try {
-    const output = await cmd(`zx --install --quiet ./${filename}`);
-    console.log(output);
-    return output;
+  const output = await cmd(`zx --install --quiet ./${filename}`);
+  console.log(output);
+  return output;
 } finally {
-	await rm(filename);
+  await rm(filename);
 }
 ```
 
@@ -115,6 +119,7 @@ try {
 Great! Now we can package this app up with Docker and run it in a container for easy management.
 
 > Dockerfile
+
 ```Dockerfile
 FROM node as builder
 
@@ -141,11 +146,12 @@ COPY --from=builder /app/index.js index.js
 CMD [ "node", "index.js" ]
 ```
 
-
 ## Making the plugin
 
 The plugin needs to attach to all of the code elements in reveal.js and inject some JavaScript which will send a http request with the code content to the executor and then display the response.
+
 > reveal-code-exec.js
+
 ```javascript
 window.RevealCodeExec = ({ execUrl }) => ({
   id: "code-exec",
@@ -216,6 +222,7 @@ Pressing the button yields this result:
 
 ![console-log-result.png](console-log-result.png)
 
-## Conclusion 
+## Conclusion
 
 If you made it this far, thanks for sticking along and hope your learned something new. Happy coding 😎
+

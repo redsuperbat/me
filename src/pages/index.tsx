@@ -32,16 +32,16 @@ const IconLink = ({
 };
 
 export default function Home(
-  props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   return (
     <main
       className={cls(
         "p-3 sm:p-10 md:p-20 dark:bg-slate-900 h-full min-h-screen dark:text-white relative",
-        font.className
+        font.className,
       )}
     >
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="container mx-auto">
         <div className="flex sm:flex-row flex-col items-center sm:items-start gap-2 sm:h-64">
           <Image
             priority
@@ -51,7 +51,7 @@ export default function Home(
             alt="Max Netterberg"
             className="hidden lg:block w-64 h-64"
           />
-          <div className="flex flex-col p-5 border overflow-y-scroll h-full">
+          <div className="flex flex-col p-5 border overflow-y-hidden h-full">
             <h1 className="sm:text-6xl text-2xl uppercase">Max Netterberg</h1>
             <small className="mb-2">
               Software Engineer, Tinkerer, Hobby gastronomer and Maniac
@@ -86,22 +86,19 @@ export default function Home(
             />
           </div>
         </div>
-        <section
-          className="grid gap-2 mt-2"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          }}
-        >
-          {props.markdown.map((it) => (
-            <Post
-              key={it.content}
-              href={it.href}
-              date={new Date(it.frontmatter.date!)}
-              languages={it.frontmatter.languages}
-              title={it.firstHeader ?? it.frontmatter.title ?? ""}
-              body={it.frontmatter.description}
-            />
-          ))}
+        <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
+          {props.markdown
+            .filter((it) => !it.frontmatter.draft)
+            .map((it) => (
+              <Post
+                key={it.content}
+                href={it.href}
+                date={new Date(it.frontmatter.date!)}
+                languages={it.frontmatter.languages}
+                title={it.firstHeader ?? it.frontmatter.title ?? ""}
+                body={it.frontmatter.description}
+              />
+            ))}
         </section>
       </div>
     </main>
@@ -120,7 +117,7 @@ export const getStaticProps = async () => {
   const markdown = (await new MarkdownReader().readMany(...posts)).sort(
     (a, b) =>
       new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
+      new Date(a.frontmatter.date).getTime(),
   );
 
   return {

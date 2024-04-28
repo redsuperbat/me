@@ -6,6 +6,7 @@ export const languageColors: Record<string, string> = {
   go: "#00ADD8",
   javascript: "#F7DF1E",
   js: "#F7DF1E",
+  lua: "#000080",
   python: "#3572A5",
   java: "#B07219",
   csharp: "#239120",

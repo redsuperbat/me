@@ -12,6 +12,7 @@ export class FrontmatterParser {
     position: z.number().optional().default(100),
     languages: z.string().array().default([]),
     draft: z.boolean().default(false),
+    updated: z.string(),
   });
   #frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   #parsers: ((str: string) => unknown)[] = [JSON.parse, YAML.parse];
@@ -39,7 +40,7 @@ export class FrontmatterParser {
             .slice(markdown.match(this.#frontmatterRegex)?.at(0)?.length)
             .trim(),
           frontmatter: FrontmatterParser.schema.parse(
-            parser(frontmatterString)
+            parser(frontmatterString),
           ),
         };
       } catch (e) {

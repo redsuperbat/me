@@ -1,4 +1,5 @@
 import { languageColors } from "@/static/language-colors";
+import { cls } from "@/utilities/cls";
 import moment from "moment";
 import Link from "next/link";
 
@@ -18,10 +19,11 @@ export const Post = (props: Props) => {
           <div className="flex">
             {props.languages.map((it, index) => (
               <div key={it}>
-                {index > 0 && "  ,"}
+                {index > 0 && ","}
                 <span
                   key={it}
                   style={{ color: languageColors[it.toLowerCase()] }}
+                  className={cls(index > 0 && "ml-2")}
                 >
                   {it}
                 </span>
@@ -46,7 +48,7 @@ export const Post = (props: Props) => {
       </div>
       <div className="grid place-items-center p-10 text-center">
         <h1 className="text-2xl">{props.title}</h1>
-        <p className="text-sm h-16 overflow-y-scroll">{props.body ?? ""}</p>
+        <p className="text-sm  sm:h-16">{props.body ?? ""}</p>
       </div>
     </Link>
   );
