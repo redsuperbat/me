@@ -1,4 +1,5 @@
 import { cls } from "@/utilities/cls";
+import rehypeRaw from "rehype-raw";
 import { kebabCase } from "lodash";
 import { Children, ReactNode, createElement, isValidElement } from "react";
 import ReactMarkdown from "react-markdown";
@@ -34,14 +35,14 @@ const Heading: HeadingComponent = (props) => {
     createElement(
       "h" + props.level.toString(),
       { id, className: elProps.className, after: " #" },
-      props.children
+      props.children,
     );
   return (
     <>
       <Element
         className={cls(
           props.className,
-          "dark:text-white dark:after:text-white after:content-[attr(after)] after:opacity-0 hover:after:opacity-100 after:cursor-pointer after:transition-opacity"
+          "dark:text-white dark:after:text-white after:content-[attr(after)] after:opacity-0 hover:after:opacity-100 after:cursor-pointer after:transition-opacity",
         )}
       />
     </>
@@ -53,6 +54,7 @@ export const Markdown = (props: Props) => {
     <ReactMarkdown
       className="prose-lg sm:prose-xl dark:text-white"
       rehypePlugins={[
+        rehypeRaw,
         function () {
           return rehypePrism.call(this, {
             showLineNumbers: true,

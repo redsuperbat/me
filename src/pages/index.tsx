@@ -97,6 +97,7 @@ export default function Home(
                 languages={it.frontmatter.languages}
                 title={it.firstHeader ?? it.frontmatter.title ?? ""}
                 body={it.frontmatter.description}
+                edited={it.frontmatter.updated}
               />
             ))}
         </section>
@@ -124,7 +125,7 @@ export const getStaticProps = async () => {
     props: {
       title: "Max Netterberg | Home",
       description:
-        "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer. Javascript, Typescript, Node.js, Golang, Rust",
+        "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer. Javascript, Typescript, Node.js, Golang, Rust",
       markdown: markdown.map((it) => ({
         ...it,
         href: it.path.slice(markdownPath.length),

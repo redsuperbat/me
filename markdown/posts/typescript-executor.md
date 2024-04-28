@@ -224,5 +224,12 @@ Pressing the button yields this result:
 
 ## Conclusion
 
-If you made it this far, thanks for sticking along and hope your learned something new. Happy coding 😎
+If you made it this far, thanks for sticking along and hope your learned something new.
+
+Another cool thing about using reveal is that you can embed the presentation in an iframe. Below is an example of that 👇
+
+<iframe style="width: 100%; height: 400px;" src="https://redsuperbat.github.io/demystifying-decorators/#/1">
+</iframe>
+
+Happy coding!
 
