@@ -28,7 +28,7 @@ Using code which is officially supported by the language rarely has downsides. I
 
 Creating a test in jest and node looks eerily similar:
 
-> Jest
+_Jest_
 
 ```ts
 describe("maths", () => {
@@ -38,7 +38,7 @@ describe("maths", () => {
 });
 ```
 
-> Node
+_Node_
 
 ```ts
 import { describe, it } from "node:test";
@@ -57,7 +57,7 @@ The only major difference is the node test runner requires you to import the fun
 
 Async functions are first class citizens in the node:test module:
 
-> Jest
+_Jest_
 
 ```ts
 describe("maths", () => {
@@ -67,7 +67,7 @@ describe("maths", () => {
 });
 ```
 
-> Node
+_Node_
 
 ```ts
 import { describe, it } from "node:test";
@@ -82,7 +82,7 @@ describe("maths", () => {
 
 The api works the same, any async function which returns a rejected promise in the `it` function is a failed test. That means this is also a failed test:
 
-> Node
+_Node_
 
 ```ts
 import { describe, it } from "node:test";
@@ -101,7 +101,7 @@ The node assert package also has a neat feature in that it returns the `asserts 
 
 In a typical jest test this would not narrow the type to a string even though we clearly have asserted that the type is supposed to be a string
 
-> Jest
+_Jest_
 
 ```ts
 describe("test", () => {
@@ -114,7 +114,7 @@ describe("test", () => {
 
 The asserts package in node will correctly infer the narrowed type
 
-> Node
+_Node_
 
 ```ts
 import { describe } from "node:test";
@@ -132,7 +132,7 @@ describe("test", () => {
 
 The node api also has support for the regular lifecycle hooks jest also exposes such as `beforeAll`, `beforeEach`, `afterAll` and `afterEach` allowing you to setup and destroy resources and mocks needed for tests:
 
-> Jest
+_Jest_
 
 ```ts
 beforeEach(() => {
@@ -156,7 +156,7 @@ describe("test", () => {
 
 Again, node requires you to import these lifecycle hooks from the `node:test` module
 
-> Node
+_Node_
 
 ```ts
 import { describe, it, before, after, beforeEach, afterEach } from "node:test";
