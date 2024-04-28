@@ -13,7 +13,6 @@ type Props = {
 };
 
 export const Post = (props: Props) => {
-  console.log(props);
   return (
     <Link href={props.href} className="border flex flex-col p-2 group">
       <div className="flex justify-between">
