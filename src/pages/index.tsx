@@ -1,5 +1,10 @@
 import { Anchor } from "@/components/Anchor";
-import { GithubIcon, LinkedInIcon, TwitterIcon } from "@/components/Icons";
+import {
+  GithubIcon,
+  LinkedInIcon,
+  NeovimIcon,
+  TwitterIcon,
+} from "@/components/Icons";
 import { Post } from "@/components/Post";
 import { cls } from "@/utilities/cls";
 import { MarkdownPath } from "@/utilities/markdown-path";
@@ -63,8 +68,8 @@ export default function Home(
               how it's made check out my{" "}
               <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
               where I host the code for this site. Right now my interests
-              include Distributed systems programming, Rust, Typescript, golang,
-              Event driven architectures, Wine & Food 🍷 and Golf 🏌️‍♂️⛳️.
+              include Distributed systems programming, Rust, Typescript, Neovim,
+              golang, Event driven architectures, Wine & Food 🍷 and Golf 🏌️‍♂️⛳️.
             </p>
           </div>
           <div className="flex flex-col border w-full h-full p-5 gap-2">
@@ -83,6 +88,11 @@ export default function Home(
               text="LinkedIn"
               url="https://www.linkedin.com/in/max-netterberg"
               icon={<LinkedInIcon />}
+            />
+            <IconLink
+              text="Neovim Config"
+              url="https://github.com/redsuperbat/dotfiles"
+              icon={<NeovimIcon />}
             />
           </div>
         </div>
