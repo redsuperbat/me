@@ -2,7 +2,7 @@ export const languageColors: Record<string, string> = {
   typescript: "#3178C6",
   ts: "#3178C6",
   dockerfile: "#0DB7ED",
-  rust: "#000000",
+  rust: "#DEA584",
   go: "#00ADD8",
   javascript: "#F7DF1E",
   js: "#F7DF1E",

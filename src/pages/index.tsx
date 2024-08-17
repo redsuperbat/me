@@ -69,7 +69,8 @@ export default function Home(
               <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
               where I host the code for this site. Right now my interests
               include Distributed systems programming, Rust, Typescript, Neovim,
-              golang, Event driven architectures, Wine & Food 🍷 and Golf 🏌️‍♂️⛳️.
+              golang, Event driven architectures, Wine & Food, Golf 🏌️‍♂️⛳️ and
+              Climbing 🧗
             </p>
           </div>
           <div className="flex flex-col border w-full h-full p-5 gap-2">
@@ -96,8 +97,26 @@ export default function Home(
             />
           </div>
         </div>
+        <h1>Projects</h1>
         <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
-          {props.markdown
+          {props.projects
+            .filter((it) => !it.frontmatter.draft)
+            .map((it) => (
+              <Post
+                key={it.content}
+                href={it.href}
+                date={new Date(it.frontmatter.date!)}
+                languages={it.frontmatter.languages}
+                title={it.firstHeader ?? it.frontmatter.title ?? ""}
+                body={it.frontmatter.description}
+                edited={it.frontmatter.updated}
+              />
+            ))}
+        </section>
+
+        <h1>Posts</h1>
+        <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
+          {props.posts
             .filter((it) => !it.frontmatter.draft)
             .map((it) => (
               <Post
@@ -117,15 +136,22 @@ export default function Home(
 }
 
 export const getStaticProps = async () => {
-  const markdownPath = new MarkdownPath();
-  const homeFilePath = markdownPath
-    .clone()
-    .joinWith("posts/**/*.md")
+  const postsPath = new MarkdownPath().joinWith("posts/**/*.md").toString();
+  const projectsPath = new MarkdownPath()
+    .joinWith("projects/**/*.md")
     .toString();
 
-  const posts = await glob(homeFilePath);
+  const posts = await glob(postsPath);
+  const projects = await glob(projectsPath);
 
-  const markdown = (await new MarkdownReader().readMany(...posts)).sort(
+  const postsMarkdown = (await new MarkdownReader().readMany(...posts)).sort(
+    (a, b) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime(),
+  );
+  const projectsMarkdown = (
+    await new MarkdownReader().readMany(...projects)
+  ).sort(
     (a, b) =>
       new Date(b.frontmatter.date).getTime() -
       new Date(a.frontmatter.date).getTime(),
@@ -136,9 +162,13 @@ export const getStaticProps = async () => {
       title: "Max Netterberg | Home",
       description:
         "Max Netterberg | Software Engineer, Tinkerer, Hobby gastronomer and Maniac Programmer. Javascript, Typescript, Node.js, Golang, Rust",
-      markdown: markdown.map((it) => ({
+      posts: postsMarkdown.map((it) => ({
         ...it,
-        href: it.path.slice(markdownPath.length),
+        href: it.path.slice(new MarkdownPath().length),
+      })),
+      projects: projectsMarkdown.map((it) => ({
+        ...it,
+        href: it.path.slice(new MarkdownPath().length),
       })),
     },
   };

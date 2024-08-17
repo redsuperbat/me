@@ -94,7 +94,7 @@ export const Markdown = (props: Props) => {
             <code
               className="after:content-none before:content-none font-semibold bg-gray-200 dark:bg-gray-600 px-[6px] py-[1px] rounded-md dark:text-white "
               {...rest}
-            ></code>
+            />
           );
         },
         a(props) {
