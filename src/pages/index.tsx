@@ -36,6 +36,10 @@ const IconLink = ({
   );
 };
 
+function Heading({ children }: { children: ReactNode }) {
+  return <h2 className="text-xl font-bold">{children}</h2>;
+}
+
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
@@ -97,7 +101,8 @@ export default function Home(
             />
           </div>
         </div>
-        <h1>Projects</h1>
+        <div className="mt-2"></div>
+        <Heading>Projects</Heading>
         <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
           {props.projects
             .filter((it) => !it.frontmatter.draft)
@@ -114,7 +119,8 @@ export default function Home(
             ))}
         </section>
 
-        <h1>Posts</h1>
+        <div className="mt-2"></div>
+        <Heading>Posts</Heading>
         <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
           {props.posts
             .filter((it) => !it.frontmatter.draft)

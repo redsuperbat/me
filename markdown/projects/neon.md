@@ -21,7 +21,7 @@ The language has a nice small set of features:
 
 Feel free to try it out in the playground 👇
 
-<iframe style="width: 100%; height: 400px;" src="https://redsuperbat.github.io/neon">
+<iframe style="width: 100%; height: 40rem;" src="https://redsuperbat.github.io/neon">
 </iframe>
 
 This playground is an iframe pointing to [the real playground](https://redsuperbat.github.io/neon). If your experience is sub par you can visit the real playground instead.
