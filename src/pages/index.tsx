@@ -73,7 +73,7 @@ export default function Home(
               <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
               where I host the code for this site. Right now my interests
               include Distributed systems programming, Rust, Typescript, Neovim,
-              golang, Event driven architectures, Wine & Food, Golf 🏌️‍♂️⛳️ and
+              golang, Event driven architectures, Wine & Food 🍷, Golf 🏌️‍♂️⛳️ and
               Climbing 🧗
             </p>
           </div>

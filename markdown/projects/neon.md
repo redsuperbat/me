@@ -1,11 +1,11 @@
 ---
 title: Neon - An expression based functional language
-description: In an effort of honing my rust skills I decided to create a programming language in rust. I call it neon and it's my baby
+description: In an effort of honing my rust skills I decided to create a programming language in rust. I call the language "Neon".
 languages:
   - Typescript
   - Rust
 date: 2024-08-17
-updated: 2024-08-17
+updated: 2024-08-18
 ---
 
 # Neon programming language
