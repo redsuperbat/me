@@ -51,16 +51,8 @@ export default function Home(
         font.className,
       )}
     >
-      <div className="container mx-auto">
-        <div className="flex lg:flex-row flex-col items-center lg:items-start gap-2">
-          <Image
-            priority
-            src="/images/max.jpeg"
-            height={250}
-            width={250}
-            alt="Max Netterberg"
-            className="hidden lg:block w-64 h-64"
-          />
+      <div className="mx-auto max-w-4xl">
+        <div className="gap-2 grid grid-cols-1 lg:grid-cols-header">
           <div className="flex flex-col p-5 border overflow-y-hidden h-full">
             <h1 className="sm:text-5xl text-2xl uppercase">Max Netterberg</h1>
             <small className="mb-2">Software Engineer</small>

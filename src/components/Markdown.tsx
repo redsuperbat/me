@@ -52,7 +52,7 @@ const Heading: HeadingComponent = (props) => {
 export const Markdown = (props: Props) => {
   return (
     <ReactMarkdown
-      className="prose-lg sm:prose-xl dark:text-white"
+      className="prose prose-lg sm:prose-xl dark:text-white"
       rehypePlugins={[
         rehypeRaw,
         function () {

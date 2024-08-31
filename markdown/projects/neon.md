@@ -14,10 +14,10 @@ A compact, expression-based language built in Rust 🦀
 
 This language offers a concise yet powerful feature set:
 
-1. Expression-based syntax
-2. Basic arithmetic operations (addition, subtraction, modulus)
-3. Control flow structures (if, else, else if)
-4. Support for recursion
+- Expression-based syntax
+- Basic arithmetic operations (addition, subtraction, modulus)
+- Control flow structures (if, else, else if)
+- Support for recursion
 
 Feel free to try it out in the playground 👇
 
