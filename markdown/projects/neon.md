@@ -1,27 +1,27 @@
 ---
 title: Neon - An expression based functional language
-description: In an effort of honing my rust skills I decided to create a programming language in rust. I call the language "Neon".
+description: To sharpen my Rust skills, I developed a programming language from scratch using Rust
 languages:
   - Typescript
   - Rust
 date: 2024-08-17
-updated: 2024-08-18
+updated: 2024-08-31
 ---
 
 # Neon programming language
 
-Small expression based language written in rust!
+A compact, expression-based language built in Rust 🦀
 
-The language has a nice small set of features:
+This language offers a concise yet powerful feature set:
 
-1. Higher order functions
-2. Addition and subtraction
-3. If statements
-4. Recursion
+1. Expression-based syntax
+2. Basic arithmetic operations (addition, subtraction, modulus)
+3. Control flow structures (if, else, else if)
+4. Support for recursion
 
 Feel free to try it out in the playground 👇
 
 <iframe style="width: 100%; height: 40rem;" src="https://redsuperbat.github.io/neon">
 </iframe>
 
-This playground is an iframe pointing to [the real playground](https://redsuperbat.github.io/neon). If your experience is sub par you can visit the real playground instead.
+This playground is an embedded iframe linking to [the full version](https://redsuperbat.github.io/neon). For the best experience, feel free to visit the full site directly.

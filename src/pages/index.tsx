@@ -1,5 +1,6 @@
 import { Anchor } from "@/components/Anchor";
 import {
+  CVIcon,
   GithubIcon,
   LinkedInIcon,
   NeovimIcon,
@@ -51,7 +52,7 @@ export default function Home(
       )}
     >
       <div className="container mx-auto">
-        <div className="flex sm:flex-row flex-col items-center sm:items-start gap-2 sm:h-64">
+        <div className="flex lg:flex-row flex-col items-center lg:items-start gap-2">
           <Image
             priority
             src="/images/max.jpeg"
@@ -61,24 +62,25 @@ export default function Home(
             className="hidden lg:block w-64 h-64"
           />
           <div className="flex flex-col p-5 border overflow-y-hidden h-full">
-            <h1 className="sm:text-6xl text-2xl uppercase">Max Netterberg</h1>
-            <small className="mb-2">
-              Software Engineer, Tinkerer, Hobby gastronomer and Maniac
-              Programmer
-            </small>
+            <h1 className="sm:text-5xl text-2xl uppercase">Max Netterberg</h1>
+            <small className="mb-2">Software Engineer</small>
             <p>
-              Hi, I'm Max. I post stuff here about tech. This page acts as a
-              forum for me to add posts of varying quality. If you you wonder
-              how it's made check out my{" "}
-              <Anchor href="https://github.com/redsuperbat/me">github</Anchor>{" "}
-              where I host the code for this site. Right now my interests
-              include Distributed systems programming, Rust, Typescript, Neovim,
-              golang, Event driven architectures, Wine & Food 🍷, Golf 🏌️‍♂️⛳️ and
-              Climbing 🧗
+              Hi, I'm Max—a Software Engineer with a Master’s in Engineering and
+              over {props.yoe} years of experience in crafting reliable and
+              efficient software solutions. I specialize in transforming complex
+              problems into clean, maintainable code. Currently, my interests
+              span distributed systems programming, Rust, TypeScript, Neovim,
+              Golang, and event-driven architectures. Outside of tech, I enjoy
+              exploring wine and food 🍷, golfing 🏌⛳, and climbing 🧗.
             </p>
           </div>
           <div className="flex flex-col border w-full h-full p-5 gap-2">
-            <small>You can find me in these places 👇</small>
+            <h3>Useful links ✨</h3>
+            <IconLink
+              text="CV"
+              url="/files/max_netterberg_CV.pdf"
+              icon={<CVIcon />}
+            />
             <IconLink
               text="Github"
               url="https://github.com/redsuperbat"
@@ -163,6 +165,17 @@ export const getStaticProps = async () => {
       new Date(a.frontmatter.date).getTime(),
   );
 
+  const start = new Date("2019-11-01");
+  const now = new Date();
+  let yoe = now.getUTCFullYear() - start.getUTCFullYear();
+
+  const monthsDiff = now.getUTCMonth() - start.getUTCMonth();
+  const daysDiff = now.getUTCDate() - start.getUTCDate();
+
+  if (monthsDiff < 0 || (monthsDiff === 0 && daysDiff <= 0)) {
+    yoe--;
+  }
+
   return {
     props: {
       title: "Max Netterberg | Home",
@@ -176,6 +189,7 @@ export const getStaticProps = async () => {
         ...it,
         href: it.path.slice(new MarkdownPath().length),
       })),
+      yoe,
     },
   };
 };
