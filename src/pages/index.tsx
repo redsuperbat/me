@@ -57,13 +57,13 @@ export default function Home(
             <h1 className="sm:text-5xl text-2xl uppercase">Max Netterberg</h1>
             <small className="mb-2">Software Engineer</small>
             <p>
-              Hi, I'm Max—a Software Engineer with a Master’s in Engineering and
-              over {props.yoe} years of experience in crafting reliable and
-              efficient software solutions. I specialize in transforming complex
-              problems into clean, maintainable code. Currently, my interests
-              span distributed systems programming, Rust, TypeScript, Neovim,
-              Golang, and event-driven architectures. Outside of tech, I enjoy
-              exploring wine and food 🍷, golfing 🏌⛳, and climbing 🧗.
+              Hi 👋, I'm Max! Software Engineer with a Master’s in Engineering
+              and over {props.yoe} years of experience in crafting reliable and
+              efficient software. I specialize in transforming complex problems
+              into clean, maintainable code. Currently, my interests span
+              distributed systems, Rust, TypeScript, Neovim, Golang, and
+              event-driven architectures. Outside of tech, I enjoy exploring
+              wine and food 🍷, golfing 🏌⛳, and climbing 🧗.
             </p>
           </div>
           <div className="flex flex-col border w-full h-full p-5 gap-2">
