@@ -23,7 +23,7 @@ At some point, I had to add a file size check to my LSP config in Neovim to expl
 
 Adding additional languages was also a pain. I'm Swedish and maintain some websites with Swedish copy, which was unknowingly littered with spelling errors reported by cspell. I tried adding the Swedish cspell dictionary, but after an hour of searching and trial and error, I gave up and opted to disable cspell LSP in projects with Swedish copy.
 
-After some time, I stumbled upon harper-ls, a fantastic project I thought would solve all my problems. However, it fell short since it could only spellcheck comments and markdown—essentially addressing a different need than what cspell was doing.
+After some time, I stumbled upon [harper-ls](https://writewithharper.com/), a fantastic project I thought would solve all my problems. However, it fell short since it could only spellcheck comments and markdown—essentially addressing a different need than what cspell was doing.
 
 Therefore, I decided to create my own code spellchecker, and rustproof was born.
 
