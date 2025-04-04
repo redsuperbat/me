@@ -5,7 +5,7 @@ languages:
   - Typescript
   - Rust
 date: 2024-08-17
-updated: 2024-08-31
+updated: 2025-04-04
 ---
 
 # Neon programming language
@@ -24,4 +24,4 @@ Feel free to try it out in the playground 👇
 <iframe style="width: 100%; height: 40rem;" src="https://redsuperbat.github.io/neon">
 </iframe>
 
-This playground is an embedded iframe linking to [the full version](https://redsuperbat.github.io/neon). For the best experience, feel free to visit the full site directly.
+This playground is an embedded iframe that links to [the full version](https://redsuperbat.github.io/neon). For the best experience, feel free to visit the full site directly.
