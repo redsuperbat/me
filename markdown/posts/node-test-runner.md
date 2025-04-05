@@ -1,6 +1,6 @@
 ---
 title: Why you might not need Jest anymore
-description: Node's new test runner comes with the essentials of testing making Jest obsolete in the majority of cases. This article goes through examples of when to use the node test runner instead of a library like jest
+description: Node’s built-in test runner covers the essentials, making Jest unnecessary in most cases. This article explores when to choose Node's test runner over libraries like Jest.
 languages:
   - Typescript
   - Javascript
@@ -12,11 +12,11 @@ updated: 2023-08-26
 
 A good argument for using some new technology is always
 
-> ”it's native” - _some 🫛 dev_
+> it's native
 
 or
 
-> ”it's included in the standard library” - _your local senior SWE_
+> it's included in the standard library
 
 Using code which is officially supported by the language rarely has downsides. It's pretty much guaranteed to not become outdated, it's updated when you update your language version and code from the std-library is never going to become a stale project because of open source drama (looking at you 🦀-foundation).
 

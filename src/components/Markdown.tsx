@@ -1,9 +1,9 @@
 import { cls } from "@/utilities/cls";
 import rehypeRaw from "rehype-raw";
 import { kebabCase } from "lodash";
-import { Children, ReactNode, createElement, isValidElement } from "react";
+import { Children, type ReactNode, createElement, isValidElement } from "react";
 import ReactMarkdown from "react-markdown";
-import { type HeadingComponent } from "react-markdown/lib/ast-to-react";
+import type { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
 import { Anchor } from "./Anchor";
@@ -29,11 +29,11 @@ const Heading: HeadingComponent = (props) => {
     return "";
   }
 
-  const slug = getTextFromReactNode(<h1 {...props}></h1>);
+  const slug = getTextFromReactNode(<h1 {...props} />);
   const id = kebabCase(slug);
   const Element = (elProps: { className: string }) =>
     createElement(
-      "h" + props.level.toString(),
+      `h${props.level.toString()}`,
       { id, className: elProps.className, after: " #" },
       props.children,
     );
@@ -76,19 +76,17 @@ export const Markdown = (props: Props) => {
             <blockquote
               className="[&>p]:before:content-none [&>p]:after:content-none dark:text-white border-l-4 dark:border-gray-500 dark:bg-gray-600 bg-gray-100 rounded"
               {...rest}
-            ></blockquote>
+            />
           );
         },
         pre(props) {
           const { className, ...rest } = props;
-          return (
-            <pre className={cls(className, "max-w-[90vw]")} {...rest}></pre>
-          );
+          return <pre className={cls(className, "max-w-[90vw]")} {...rest} />;
         },
         code(props) {
           const { className, ...rest } = props;
           if (className?.includes("code-highlight")) {
-            return <code className={cls(className)} {...rest}></code>;
+            return <code className={cls(className)} {...rest} />;
           }
           return (
             <code

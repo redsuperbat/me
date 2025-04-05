@@ -11,10 +11,9 @@ import { cls } from "@/utilities/cls";
 import { MarkdownPath } from "@/utilities/markdown-path";
 import { MarkdownReader } from "@/utilities/markdown-reader";
 import { glob } from "glob";
-import { InferGetStaticPropsType } from "next";
+import type { InferGetStaticPropsType } from "next";
 import { Share_Tech_Mono } from "next/font/google";
-import Image from "next/image";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const font = Share_Tech_Mono({ weight: "400", subsets: ["latin"] });
 
@@ -95,7 +94,7 @@ export default function Home(
             />
           </div>
         </div>
-        <div className="mt-2"></div>
+        <div className="mt-2" />
         <Heading>Projects</Heading>
         <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
           {props.projects
@@ -104,7 +103,7 @@ export default function Home(
               <Post
                 key={it.content}
                 href={it.href}
-                date={new Date(it.frontmatter.date!)}
+                date={new Date(it.frontmatter.date)}
                 languages={it.frontmatter.languages}
                 title={it.firstHeader ?? it.frontmatter.title ?? ""}
                 body={it.frontmatter.description}
@@ -113,7 +112,7 @@ export default function Home(
             ))}
         </section>
 
-        <div className="mt-2"></div>
+        <div className="mt-2" />
         <Heading>Posts</Heading>
         <section className="grid gap-2 mt-2 grid-cols-1 lg:grid-cols-2">
           {props.posts
@@ -122,7 +121,7 @@ export default function Home(
               <Post
                 key={it.content}
                 href={it.href}
-                date={new Date(it.frontmatter.date!)}
+                date={new Date(it.frontmatter.date)}
                 languages={it.frontmatter.languages}
                 title={it.firstHeader ?? it.frontmatter.title ?? ""}
                 body={it.frontmatter.description}

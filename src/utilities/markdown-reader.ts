@@ -1,6 +1,6 @@
 import fs from "fs-extra";
-import path from "path";
-import { Frontmatter, FrontmatterParser } from "./frontmatter-parser";
+import path from "node:path";
+import { type Frontmatter, FrontmatterParser } from "./frontmatter-parser";
 
 export type MarkdownFile = {
   content: string;

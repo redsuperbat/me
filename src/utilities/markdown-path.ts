@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import util from "node:util";
 
 export class MarkdownPath {

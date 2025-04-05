@@ -47,6 +47,6 @@ export class FrontmatterParser {
         errors.push(e as Error);
       }
     }
-    throw new Error("unable to parse" + frontmatterString + errors.join(""));
+    throw new Error(`unable to parse${frontmatterString}${errors.join("")}`);
   }
 }

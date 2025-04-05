@@ -2,7 +2,7 @@ import { Markdown } from "@/components/Markdown";
 import { MarkdownPath } from "@/utilities/markdown-path";
 import { MarkdownReader } from "@/utilities/markdown-reader";
 import { glob } from "glob";
-import {
+import type {
   GetStaticPaths,
   GetStaticPropsContext,
   InferGetStaticPropsType,

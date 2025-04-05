@@ -2,14 +2,14 @@ import { Markdown } from "@/components/Markdown";
 import { MarkdownPath } from "@/utilities/markdown-path";
 import { MarkdownReader } from "@/utilities/markdown-reader";
 import { glob } from "glob";
-import {
+import type {
   GetStaticPaths,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from "next";
 
 export default function PostsPage(
-  props: InferGetStaticPropsType<typeof getStaticProps>
+  props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   return (
     <main className="dark:bg-slate-900 p-5 sm:p-10 md:p-20 w-screen min-h-screen">
