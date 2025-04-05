@@ -74,7 +74,7 @@ export const Markdown = (props: Props) => {
           const { className, ...rest } = props;
           return (
             <blockquote
-              className="[&>p]:before:content-none [&>p]:after:content-none dark:text-white border-l-4 dark:border-gray-500 dark:bg-gray-600 bg-gray-100 rounded"
+              className="[&>p]:before:content-none [&>p]:after:content-none dark:text-white border-l-4 dark:border-gray-500 dark:bg-gray-600 bg-gray-100 rounded-sm"
               {...rest}
             />
           );

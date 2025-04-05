@@ -1,9 +1,16 @@
-/* Assume light mode by default */
-@import "./line-highlighting.css";
-@import "./one-light-prism.css" screen;
-/* Supersede dark mode when applicable */
-@import "./one-dark-prism.css" screen and (prefers-color-scheme: dark);
+@import "./line-highlighting.css" layer(base);
+@import "./one-dark-prism.css" layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  --grid-template-columns-header: 1fr auto;
+}
