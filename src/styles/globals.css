@@ -1,6 +1,3 @@
-@import "./line-highlighting.css" layer(base);
-@import "./one-dark-prism.css" layer(base);
-
 @import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
