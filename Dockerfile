@@ -1,13 +1,13 @@
 ##### DEPENDENCIES
 
-FROM node:18-slim AS deps
+FROM node:22-slim AS deps
 WORKDIR /app
 COPY package.json yarn.lock* ./
 RUN yarn --frozen-lockfile
 
 ##### BUILDER
 
-FROM node:18-slim AS builder
+FROM node:22-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -16,7 +16,7 @@ RUN yarn build
 
 ##### RUNNER
 
-FROM node:18-slim AS runner
+FROM node:22-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
