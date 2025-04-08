@@ -28,7 +28,6 @@ Using code which is officially supported by the language rarely has downsides. I
 
 Creating a test in jest and node looks eerily similar:
 
-_Jest_
 
 ```typescript Jest
 describe("maths", () => {
@@ -38,7 +37,7 @@ describe("maths", () => {
 });
 ```
 
-_Node_
+---
 
 ```typescript Node
 import { describe, it } from "node:test";
@@ -57,9 +56,7 @@ The only major difference is the node test runner requires you to import the fun
 
 Async functions are first class citizens in the node:test module:
 
-_Jest_
-
-```typescript
+```typescript Jest
 describe("maths", () => {
   it("should sum", async () => {
     expect(1 + 2).toEqual(3);
@@ -67,9 +64,9 @@ describe("maths", () => {
 });
 ```
 
-_Node_
+---
 
-```typescript
+```typescript Node
 import { describe, it } from "node:test";
 import assert from "node:assert";
 
@@ -82,9 +79,7 @@ describe("maths", () => {
 
 The api works the same, any async function which returns a rejected promise in the `it` function is a failed test. That means this is also a failed test:
 
-_Node_
-
-```typescript
+```typescript Node
 import { describe, it } from "node:test";
 import assert from "node:assert";
 
@@ -101,9 +96,8 @@ The node assert package also has a neat feature in that it returns the `asserts 
 
 In a typical jest test this would not narrow the type to a string even though we clearly have asserted that the type is supposed to be a string
 
-_Jest_
 
-```typescript
+```typescript Jest
 describe("test", () => {
   let thing: string | undefined;
   expect(typeof thing === "string");
@@ -114,9 +108,7 @@ describe("test", () => {
 
 The asserts package in node will correctly infer the narrowed type
 
-_Node_
-
-```typescript
+```typescript Node
 import { describe } from "node:test";
 import assert from "node:assert";
 
@@ -132,9 +124,8 @@ describe("test", () => {
 
 The node api also has support for the regular lifecycle hooks jest also exposes such as `beforeAll`, `beforeEach`, `afterAll` and `afterEach` allowing you to setup and destroy resources and mocks needed for tests:
 
-_Jest_
 
-```typescript
+```typescript Jest
 beforeEach(() => {
   initializeDatabase();
 });
@@ -156,9 +147,7 @@ describe("test", () => {
 
 Again, node requires you to import these lifecycle hooks from the `node:test` module
 
-_Node_
-
-```typescript
+```typescript Node
 import { describe, it, before, after, beforeEach, afterEach } from "node:test";
 import assert from "node:assert";
 

@@ -5,14 +5,11 @@ export const Anchor = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const { className, children, ...rest } = props;
   return (
     <a
-      className={cls(
-        "dark:text-blue-400 text-blue-600 relative group",
-        className,
-      )}
+      className={cls("text-blue-400 relative group no-underline", className)}
       {...rest}
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] dark:bg-blue-400 bg-blue-600 transition-all duration-200 group-hover:w-full" />
+      <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-blue-400 transition-all duration-200 group-hover:w-full" />
     </a>
   );
 };

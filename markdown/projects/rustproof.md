@@ -27,7 +27,6 @@ After some time, I stumbled upon [harper-ls](https://writewithharper.com/), a fa
 
 Therefore, I decided to create my own code spellchecker, and rustproof was born.
 
-Rustproof has a simple architecture very common to how cspell works but leverages [hunspell](https://hunspell.github.io) in order to spellcheck words. This allows Rustproof to load dictionaries from any language supported by hunspell. Below you can see a demonstration of the LSP in action: 
+Rustproof has a simple architecture very common to how cspell works but leverages [hunspell](https://hunspell.github.io) in order to spellcheck words. This allows Rustproof to load dictionaries from any language supported by hunspell. Below you can see a demonstration of the LSP in action:
 
 <img src="https://github.com/user-attachments/assets/ad313dcb-fac7-4df7-afbb-47f95ecf2e2f" />
-

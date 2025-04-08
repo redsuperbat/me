@@ -46,7 +46,7 @@ export default function Home(
   return (
     <main
       className={cls(
-        "p-3 sm:p-10 md:p-20 dark:bg-slate-900 h-full min-h-screen dark:text-white relative",
+        "p-3 sm:p-10 md:p-20 bg-slate-900 h-full min-h-screen text-white relative",
         font.className,
       )}
     >

@@ -12,7 +12,7 @@ export default function PostsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
   return (
-    <main className="dark:bg-slate-900 p-5 sm:p-10 md:p-20 w-screen min-h-screen">
+    <main className="bg-slate-900 p-5 sm:p-10 md:p-20 w-screen min-h-screen">
       <div className="max-w-3xl mx-auto">
         <Markdown content={props.markdown.content} />
       </div>
