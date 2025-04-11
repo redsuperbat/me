@@ -58,6 +58,7 @@ export const Markdown = (props: Props) => {
           <fieldset className="border border-gray-500 rounded-md bg-[#282c34]">
             <legend className="ml-4">{legend ?? language}</legend>
             <SyntaxHighlighter
+              PreTag="div"
               customStyle={{ margin: 0, maxWidth: "min(42rem, 90vw)" }}
               language={language}
               style={dark}
