@@ -44,6 +44,7 @@ function Pre({ children }: { children: ReactNode }) {
 export const Markdown = (props: Props) => {
   const file = new VFile(props.content);
   const tree = processor.runSync(processor.parse(file));
+  const maxWidth = "min(48rem, 90vw)";
   const node = toJsxRuntime(tree, {
     Fragment,
     jsx,
@@ -51,15 +52,22 @@ export const Markdown = (props: Props) => {
     components: {
       a: Anchor,
       pre: Pre,
+      ul(props) {
+        return <ul {...props} className="list-disc" />;
+      },
       code(props) {
         const { children, className, node, legend, ...rest } = props;
         const language = className?.slice("language-".length);
         return language ? (
-          <fieldset className="border border-gray-500 rounded-md bg-[#282c34]">
+          <fieldset
+            className="border border-gray-500 rounded-md bg-[#282c34] overflow-x-auto"
+            style={{ maxWidth }}
+          >
             <legend className="ml-4">{legend ?? language}</legend>
             <SyntaxHighlighter
               PreTag="div"
-              customStyle={{ margin: 0, maxWidth: "min(42rem, 90vw)" }}
+              customStyle={{ margin: 0, padding: "10px 0", maxWidth }}
+              lineNumberStyle={{ paddingRight: "0.8rem", minWidth: "2.90rem" }}
               language={language}
               style={dark}
               showLineNumbers

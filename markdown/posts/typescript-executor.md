@@ -8,15 +8,20 @@ updated: 2025-04-12
 
 # Typescript Executor
 
-How to execute typescript code during live coding presentations.
+# How to Execute TypeScript Code During Live Coding Presentations
 
-A couple of months ago I held a presentation regarding Typescript decorators. I called it ["Demystifying Decorators"](https://redsuperbat.github.io/demystifying-decorators/) and it's about creating a dependency injection library in typescript using decorators.
+A couple of months ago, I gave a presentation on TypeScript decorators. I
+called it ["Demystifying Decorators"](https://redsuperbat.github.io/demystifying-decorators/), and it
+focused on creating a dependency injection library in TypeScript using
+decorators.
 
-I wanted to be able to show code in an intuitive manner since the audience were mainly developers and I found this really awesome framework for creating presentations from `html` called [reveal](https://reveal.com).
+I wanted to present code in an intuitive way, especially since the audience was
+primarily developers. I found a really awesome framework for creating
+presentations from HTML called [Reveal](https://reveal.com).
 
-Reveal had an awesome toolkit which helped me display code and transition between slides.
+Reveal came with a great toolkit that helped me display code and smoothly transition between slides.
 
-Simple code like this would make a really nice slide.
+Simple code like this made for a really nice slide:
 
 ```html
 <section>
@@ -26,14 +31,41 @@ Simple code like this would make a really nice slide.
 </section>
 ```
 
-![](decorators.png)
-It even though reveal have awesome support for showing code it did not have support for executing that code live during presentations. This is something that I really wanted since executing code during a presentation can significantly increase understanding of the code especially since the presentation was very `techy`.
+![Decorators](decorators.png)
 
-Reveal has a good plugin system so I started to look for a plugin which had the capability of executing code. I found [this](https://github.com/stanleynguyen/reveal-run-in-terminal) repo. It's a plugin to expose the terminal to run arbitrary console command such as `node` or `python` which then could run the code you had displayed.
+Even though Reveal has great support for displaying code, it doesn't support
+executing code live during presentations. This was something I really wanted,
+as running code live can significantly enhance understanding—especially in a
+very *techy* presentation like mine.
 
-However it has some issues, you have to run a command in the presentation pointing to a file which must contain the same code which is shown in the slide. Also if I wanted to run any code which depended on any external package I would have to install it on my machine first. I wanted to be able to press a button and run whatever code which was displayed on the screen and print the std out to the presentation screen. Regardless of dependencies or if I was presenting Typescript or JavaScript.
+Reveal has a solid plugin system, so I started looking for a plugin that could
+execute code. I found [this repo](https://github.com/stanleynguyen/reveal-run-in-terminal), which is a
+plugin that exposes the terminal to run arbitrary console commands such as
+`node` or `python`, allowing you to execute the code displayed in your slides.
 
-So I concluded I needed two things. Firstly a server which could accept code and **_transpile_** it if it was Typescript, fetch and install any external dependencies from `npm` and execute the code returning whatever logs which were printed to std out. Secondly I needed a reveal plugin which could send the text from code blocks to that server and display the text returned.
+However, it had some limitations. You have to run a command in the presentation
+that points to a file containing the same code shown on the slide. Also, if I
+wanted to run code that depended on external packages, I'd have to install
+those packages on my machine ahead of time.
+
+What I really wanted was the ability to press a button, run *any* code shown on
+the screen, and display the standard output right in the
+presentation—regardless of dependencies or whether I was using TypeScript or
+JavaScript.
+
+So, I concluded that I needed two things:
+
+A **server** that could:
+   - Accept code,
+   - **Transpile** it if it's TypeScript,
+   - Fetch and install any external dependencies from `npm`,
+   - Execute the code, and
+   - Return whatever logs were printed to standard output.
+
+A **Reveal plugin** that could:
+   - Send the content of code blocks to that server, and
+   - Display the returned output in the presentation.
+
 
 ## Making the executor
 
@@ -108,7 +140,10 @@ try {
 }
 ```
 
-`zx` is intended to be used for scripting generally, but it really fit this use case well since it can install dependencies with the `--install` flag. By writing the javascript to a temporary file and pointing `zx` to that file we are avoiding having to interpolate Javascript code into the command line.
+`zx` is intended to be used for scripting generally, but it really fit this use
+case well since it can install dependencies with the `--install` flag. By
+writing the javascript to a temporary file and pointing `zx` to that file we
+are avoiding having to interpolate Javascript code into the command line.
 
 Great! Now we can package this app up with Docker and run it in a container for easy management.
 
@@ -140,7 +175,9 @@ CMD [ "node", "index.js" ]
 
 ## Making the plugin
 
-The plugin needs to attach to all of the code elements in reveal.js and inject some JavaScript which will send a http request with the code content to the executor and then display the response.
+The plugin needs to attach to all of the code elements in reveal.js and inject
+some JavaScript which will send a http request with the code content to the
+executor and then display the response.
 
 ```javascript reveal-code-exec.js
 window.RevealCodeExec = ({ execUrl }) => ({
