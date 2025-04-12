@@ -3,7 +3,7 @@ title: Making a typescript executor
 description: Making interactive presentations are fun. I created one with reveal.js and adding live code execution with a typescript transpiler and executor
 languages: ["Typescript", "Dockerfile"]
 date: 2023-03-22
-updated: 2024-04-28
+updated: 2025-04-12
 ---
 
 # Typescript Executor
@@ -39,9 +39,7 @@ So I concluded I needed two things. Firstly a server which could accept code and
 
 To make an API which could execute typescript code and return the results we can use any http framework. I opted to use [`fastify`](https://fastify.dev/) since it's supposed to be blazingly fast 🔥.
 
-> index.ts
-
-```ts
+```typescript index.ts
 import cors from "@fastify/cors";
 import init from "fastify";
 const fastify = init({ logger: true, requestTimeout: 60_000 });
@@ -64,9 +62,7 @@ start();
 
 Since we want to be able to send Typescript code we have to transpile the code, this can be done with the `typescript` package:
 
-> index.ts
-
-```ts
+```typescript index.ts
 import { transpile, ModuleKind, ScriptTarget } from "typescript";
 
 const js = transpile(tsCode, {
@@ -79,9 +75,7 @@ const js = transpile(tsCode, {
 
 The executor should also be able to download arbitrary dependencies declared in the code. There is a great library which is made by Google called [`zx`](https://GitHub.com/google/zx) which can help us with that:
 
-> index.ts
-
-```ts
+```typescript index.ts
 import { exec } from "child_process";
 import { randomUUID } from "crypto";
 import { rm, writeFile } from "fs/promises";
@@ -118,8 +112,6 @@ try {
 
 Great! Now we can package this app up with Docker and run it in a container for easy management.
 
-> Dockerfile
-
 ```Dockerfile
 FROM node as builder
 
@@ -150,9 +142,7 @@ CMD [ "node", "index.js" ]
 
 The plugin needs to attach to all of the code elements in reveal.js and inject some JavaScript which will send a http request with the code content to the executor and then display the response.
 
-> reveal-code-exec.js
-
-```javascript
+```javascript reveal-code-exec.js
 window.RevealCodeExec = ({ execUrl }) => ({
   id: "code-exec",
   init: () => {
@@ -199,7 +189,7 @@ window.RevealCodeExec = ({ execUrl }) => ({
 
 We attach a function to the global window object and register it as a plugin in `index.html`
 
-```html {1,9}
+```html
 <script src="plugin/code-exec/plugin.js"></script>
 <script>
   Reveal.initialize({
@@ -231,5 +221,5 @@ Another cool thing about using reveal is that you can embed the presentation in 
 <iframe style="width: 100%; height: 400px;" src="https://redsuperbat.github.io/demystifying-decorators/#/1">
 </iframe>
 
-Happy coding!
+Happy coding! 🌈
 
