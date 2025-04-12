@@ -8,8 +8,6 @@ updated: 2025-04-12
 
 # Typescript Executor
 
-# How to Execute TypeScript Code During Live Coding Presentations
-
 A couple of months ago, I gave a presentation on TypeScript decorators. I
 called it ["Demystifying Decorators"](https://redsuperbat.github.io/demystifying-decorators/), and it
 focused on creating a dependency injection library in TypeScript using
