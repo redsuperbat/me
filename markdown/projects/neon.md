@@ -1,11 +1,11 @@
 ---
 title: Neon - An expression based functional language
-description: To sharpen my Rust skills, I developed a programming language from scratch using Rust
+description: To sharpen my Rust skills, I developed a programming language using Rust
 languages:
   - Typescript
   - Rust
 date: 2024-08-17
-updated: 2025-04-04
+updated: 2025-04-13
 ---
 
 # Neon programming language
