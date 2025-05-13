@@ -5,12 +5,12 @@ languages:
   - Typescript
   - Rust
 date: 2024-08-17
-updated: 2025-04-13
+updated: 2025-05-13
 ---
 
 # Neon programming language
 
-A compact, expression-based language built in Rust 🦀
+A compact, expression-based language built in Rust 🦀. [Github link](https://github.com/redsuperbat/neon)
 
 This language offers a concise yet powerful feature set:
 
