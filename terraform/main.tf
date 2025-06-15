@@ -34,9 +34,8 @@ resource "kubernetes_ingress_v1" "me_ingress" {
     name      = local.name
     namespace = local.namespace
     annotations = {
-      "kubernetes.io/ingress.class"                      = "traefik"
-      "cert-manager.io/cluster-issuer"                   = "letsencrypt-prod"
-      "traefik.ingress.kubernetes.io/router.middlewares" = "default-redirect-https@kubernetescrd"
+      "kubernetes.io/ingress.class"    = "traefik"
+      "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
     }
   }
 
