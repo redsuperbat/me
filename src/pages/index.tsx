@@ -60,7 +60,7 @@ export default function Home(
               and over {props.yoe} years of experience in crafting reliable and
               efficient software. I specialize in transforming complex problems
               into clean, maintainable code. Currently, my interests span
-              distributed systems, Rust, TypeScript, Neovim, Golang, and
+              distributed systems, Rust, TypeScript, Neovim, Golang, Nix, and
               event-driven architectures. Outside of tech, I enjoy exploring
               wine and food 🍷, golfing 🏌⛳, and climbing 🧗.
             </p>
