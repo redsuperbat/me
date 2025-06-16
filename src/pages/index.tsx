@@ -4,6 +4,7 @@ import {
   GithubIcon,
   LinkedInIcon,
   NeovimIcon,
+  NixIcon,
   TwitterIcon,
 } from "@/components/Icons";
 import { Post } from "@/components/Post";
@@ -89,8 +90,13 @@ export default function Home(
             />
             <IconLink
               text="Neovim Config"
-              url="https://github.com/redsuperbat/dotfiles"
+              url="https://github.com/redsuperbat/nix-config/tree/main/home-manager/programs/neovim/nvim"
               icon={<NeovimIcon />}
+            />
+            <IconLink
+              text="Nix Config"
+              url="https://github.com/redsuperbat/nix-config"
+              icon={<NixIcon />}
             />
           </div>
         </div>
