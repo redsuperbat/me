@@ -70,7 +70,7 @@ export default function Home(
             <h3>Useful links ✨</h3>
             <IconLink
               text="CV"
-              url="/files/max_netterberg_CV.pdf"
+              url="https://raw.githubusercontent.com/redsuperbat/cv/pdf/cv.pdf"
               icon={<CVIcon />}
             />
             <IconLink
