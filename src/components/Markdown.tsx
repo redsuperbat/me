@@ -56,7 +56,7 @@ export const Markdown = (props: Props) => {
         return <ul {...props} className="list-disc" />;
       },
       code(props) {
-        const { children, className, node, legend, ...rest } = props;
+        const { children, className, legend, ...rest } = props;
         const language = className?.slice("language-".length);
         return language ? (
           <fieldset
