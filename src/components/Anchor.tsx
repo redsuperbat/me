@@ -1,5 +1,5 @@
-import { cls } from "@/utilities/cls";
 import type { AnchorHTMLAttributes } from "react";
+import { cls } from "@/utilities/cls";
 
 export const Anchor = (props: AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const { className, children, ...rest } = props;

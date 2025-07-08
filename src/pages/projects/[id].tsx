@@ -1,12 +1,12 @@
-import { Markdown } from "@/components/Markdown";
-import { MarkdownPath } from "@/utilities/markdown-path";
-import { MarkdownReader } from "@/utilities/markdown-reader";
 import { glob } from "glob";
 import type {
   GetStaticPaths,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from "next";
+import { Markdown } from "@/components/Markdown";
+import { MarkdownPath } from "@/utilities/markdown-path";
+import { MarkdownReader } from "@/utilities/markdown-reader";
 
 export default function PostsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,

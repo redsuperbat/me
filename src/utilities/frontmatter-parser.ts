@@ -1,5 +1,5 @@
-import { z } from "zod";
 import YAML from "yaml";
+import { z } from "zod";
 
 export type Frontmatter = z.infer<typeof FrontmatterParser.schema>;
 

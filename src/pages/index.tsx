@@ -1,3 +1,7 @@
+import { glob } from "glob";
+import type { InferGetStaticPropsType } from "next";
+import { Share_Tech_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 import { Anchor } from "@/components/Anchor";
 import {
   CVIcon,
@@ -11,10 +15,6 @@ import { Post } from "@/components/Post";
 import { cls } from "@/utilities/cls";
 import { MarkdownPath } from "@/utilities/markdown-path";
 import { MarkdownReader } from "@/utilities/markdown-reader";
-import { glob } from "glob";
-import type { InferGetStaticPropsType } from "next";
-import { Share_Tech_Mono } from "next/font/google";
-import type { ReactNode } from "react";
 
 const font = Share_Tech_Mono({ weight: "400", subsets: ["latin"] });
 

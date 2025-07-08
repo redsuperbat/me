@@ -1,19 +1,19 @@
-import remarkGfm from "remark-gfm";
+import { toJsxRuntime } from "hast-util-to-jsx-runtime";
+import type { Root } from "mdast";
 import type { ReactNode } from "react";
-import { Anchor } from "./Anchor";
+import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import dark from "react-syntax-highlighter/dist/esm/styles/prism/one-dark";
+import rehypeRaw from "rehype-raw";
+import rehypeStringify from "rehype-stringify";
+import remarkGfm from "remark-gfm";
 import { remarkAlert } from "remark-github-blockquote-alert";
-import { unified, type Plugin } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypeRaw from "rehype-raw";
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { VFile } from "vfile";
+import { type Plugin, unified } from "unified";
 import { visit } from "unist-util-visit";
-import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-import type { Root } from "mdast";
+import { VFile } from "vfile";
+import { Anchor } from "./Anchor";
 
 export type Props = {
   content: string;

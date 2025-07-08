@@ -1,7 +1,7 @@
-import { languageColors } from "@/static/language-colors";
-import { cls } from "@/utilities/cls";
 import moment from "moment";
 import Link from "next/link";
+import { languageColors } from "@/static/language-colors";
+import { cls } from "@/utilities/cls";
 
 type Props = {
   date: Date;
@@ -49,9 +49,7 @@ export const Post = (props: Props) => {
       </div>
       <div
         className="grid px-5 sm:px-10 py-2 text-center gap-4 grid-rows-4"
-        style={{
-          gridTemplateRows: "auto 1fr auto",
-        }}
+        style={{ gridTemplateRows: "auto 1fr auto" }}
       >
         <h1 className="text-2xl">{props.title}</h1>
         <p className="text-sm  ">{props.body ?? ""}</p>

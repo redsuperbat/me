@@ -1,6 +1,6 @@
-import { MarkdownPath } from "@/utilities/markdown-path";
-import type { GetServerSideProps } from "next";
 import fs from "fs-extra";
+import type { GetServerSideProps } from "next";
+import { MarkdownPath } from "@/utilities/markdown-path";
 
 const BASE_URL = "https://max.netterberg.io/posts";
 
